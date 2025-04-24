@@ -17,7 +17,7 @@ model = torch.load(model_path)
 model.eval()
 
 # Streamlit app
-st.title('StockTwits Sentiment Analysis')
+st.title('Sentiment Analysis')
 
 st.write("This app uses sentiment analysis on stock-related messages from StockTwits.")
 
