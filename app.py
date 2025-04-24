@@ -1,19 +1,24 @@
 import streamlit as st
 import torch
+import gdown
+import os
 import numpy as np
 import nltk
 from nltk.corpus import wordnet
 import re
-import os
 
 # Assuming the TextClassifier and preprocess function are already defined.
 
-# Define the path where the model is saved
-save_path = r"C:\Users\Asus\OneDrive\Desktop\sentiment-analysis-neural-networks-master\Model"
-model_path = os.path.join(save_path, "sentiment_model.pt")
+# Define the URL for the Google Drive model file
+model_url = "https://drive.google.com/uc?export=download&id=1ifHFDdCIPnC9rpyhnhRy98zy4Ruo3wKR"
+save_path = "sentiment_model.pt"
+
+# Download the model from Google Drive if not already downloaded
+if not os.path.exists(save_path):
+    gdown.download(model_url, save_path, quiet=False)
 
 # Load the model
-model = torch.load(model_path)
+model = torch.load(save_path)
 model.eval()
 
 # Streamlit app
@@ -36,4 +41,3 @@ if user_input:
     
     # Provide further details
     st.write("Prediction Vector: ", pred)
-
